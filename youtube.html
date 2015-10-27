@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <link type="text/css" rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -20,45 +20,32 @@
     <div id="container">
         <div id="content">
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
-<iframe width="420" height="315"
-src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
-</iframe>
-
-
-
-
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
+            </iframe>
 
 
         </div>
@@ -71,8 +58,6 @@ src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
     // };
 
     // var videos_array = [];
-
-
 
     // var get_videos = function() {
     //     // console.log(searchTerm);
@@ -103,8 +88,6 @@ src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
     //     e.preventDefault();
     // });
 
-
-
     // var video_factory = function(url, title) {
     //     var video = {
     //         video_url: url,
@@ -123,7 +106,33 @@ src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
     // $.get('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + q + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw').success(to_be_run_on_server_response);
 
     // console.log(getrequest);
+
+    var searchString = '';
+    var apiCall = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchString + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw';
+
+    $('#search').click(function() {
+        var searchInput = $('#searchInput').val(); //Gets value of input box
+        var searchArr = searchInput.split(" "); //Seperates individual words of input box into an array 
+
+        for (var i = 0; i < searchArr.length - 1; i++) {
+            searchString += searchArr[i] + "+";
+        }
+
+        searchString += searchArr[searchArr.length - 1];
+        console.log(searchString);
+        apiCall = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchString + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw'; //creates the api call
+        console.log(apiCall);
+        $.get(apiCall).success(to_be_run_on_server_response); //Submits the api call to the server
+        searchString = ''; //resets searchString
+    });
+
+    var to_be_run_on_server_response = function(data) {
+
+        console.log(data);
+    };
+
     </script>
 </body>
 
 </html>
+
