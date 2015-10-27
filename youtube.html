@@ -8,16 +8,17 @@
 </head>
 
 <body>
-    <form id="form1" onsubmit="get_videos()">
-        <div id="output"></div>
-        What would you like to search?
-        <br>
-        <input id="input1" text="text" name="search">
-        <input type="submit">
-    </form>
-    </div>
-    <br>
+
+
     <div id="container">
+        <div>What would you like to search?</div>
+        <br>
+        <input type="text" id="searchInput">
+
+        <button id="search">Search</button>
+
+        <br><br>
+
         <div id="content">
 
             <iframe width="420" height="315" src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=0">
@@ -50,88 +51,89 @@
 
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
-    <script>
-    // var to_be_run_on_server_response = function(youtube_video) {
+</body>
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+<script>
+// var to_be_run_on_server_response = function(youtube_video) {
 
-    //     console.log(youtube_video);
-    // };
+//     console.log(youtube_video);
+// };
 
-    // var videos_array = [];
+// var videos_array = [];
 
-    // var get_videos = function() {
-    //     // console.log(searchTerm);
-    //     // console.log(encodeURI(searchTerm));
-    //     var userInput = $('#input1').val();
-    //     $.ajax({
-    //         url: "https://api.imgur.com/3/gallery/search?q=" + userInput,
-    //         headers: {
-    //             "Authorization": "Client-ID e3776adbe9c5fb9"
-    //         },
-    //         success: function(response) {
-    //             // console.log(response);
-    //             // console.log(response.data);
-    //             videos_array = _.map(response.data, function(item) {
-    //                 // console.log(item);
-    //                 return video_factory(item.link, item.title);
-    //             });
-    //             // console.log(pictures_array);
-    //             _.each(pictures_array, function(item) {
-    //                 // console.log(item);
-    //                 item.render();
-    //             });
-    //         }
-    //     });
-    // };
+// var get_videos = function() {
+//     // console.log(searchTerm);
+//     // console.log(encodeURI(searchTerm));
+//     var userInput = $('#input1').val();
+//     $.ajax({
+//         url: "https://api.imgur.com/3/gallery/search?q=" + userInput,
+//         headers: {
+//             "Authorization": "Client-ID e3776adbe9c5fb9"
+//         },
+//         success: function(response) {
+//             // console.log(response);
+//             // console.log(response.data);
+//             videos_array = _.map(response.data, function(item) {
+//                 // console.log(item);
+//                 return video_factory(item.link, item.title);
+//             });
+//             // console.log(pictures_array);
+//             _.each(pictures_array, function(item) {
+//                 // console.log(item);
+//                 item.render();
+//             });
+//         }
+//     });
+// };
 
-    // $("#form1").submit(function(e) {
-    //     e.preventDefault();
-    // });
+// $("#form1").submit(function(e) {
+//     e.preventDefault();
+// });
 
-    // var video_factory = function(url, title) {
-    //     var video = {
-    //         video_url: url,
-    //         video_title: title,
-    //         $el: $('<div>').appendTo($('body')),
-    //         render: function() {
-    //             this.$el.append([
-    //                 $('<div>').html('<img alt="' + this.picture_title + '" src="' + this.picture_url + '">'),
-    //             ]);
-    //         }
+// var video_factory = function(url, title) {
+//     var video = {
+//         video_url: url,
+//         video_title: title,
+//         $el: $('<div>').appendTo($('body')),
+//         render: function() {
+//             this.$el.append([
+//                 $('<div>').html('<img alt="' + this.picture_title + '" src="' + this.picture_url + '">'),
+//             ]);
+//         }
 
-    //     };
-    //     return picture;
-    // };
+//     };
+//     return picture;
+// };
 
-    // $.get('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + q + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw').success(to_be_run_on_server_response);
+// $.get('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + q + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw').success(to_be_run_on_server_response);
 
-    // console.log(getrequest);
+// console.log(getrequest);
 
-    var searchString = '';
-    var apiCall = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchString + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw';
+var searchString = '';
+var apiCall = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchString + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw';
 
-    $('#search').click(function() {
-        var searchInput = $('#searchInput').val(); //Gets value of input box
-        var searchArr = searchInput.split(" "); //Seperates individual words of input box into an array 
+$('#search').click(function() {
+    var searchInput = $('#searchInput').val(); //Gets value of input box
+    var searchArr = searchInput.split(" "); //Seperates individual words of input box into an array 
 
-        for (var i = 0; i < searchArr.length - 1; i++) {
-            searchString += searchArr[i] + "+";
-        }
+    for (var i = 0; i < searchArr.length - 1; i++) {
+        searchString += searchArr[i] + "+";
+    }
 
-        searchString += searchArr[searchArr.length - 1];
-        console.log(searchString);
-        apiCall = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchString + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw'; //creates the api call
-        console.log(apiCall);
-        $.get(apiCall).success(to_be_run_on_server_response); //Submits the api call to the server
-        searchString = ''; //resets searchString
-    });
+    searchString += searchArr[searchArr.length - 1];
+    console.log(searchString);
+    apiCall = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchString + '&key=AIzaSyAUcyyoRT0BzGf2oDK17-BWlw4HJjQ5lNw'; //creates the api call
+    console.log(apiCall);
+    $.get(apiCall).success(to_be_run_on_server_response); //Submits the api call to the server
+    searchString = ''; //resets searchString
+});
 
-    var to_be_run_on_server_response = function(data) {
+var to_be_run_on_server_response = function(data) {
 
-        console.log(data);
-    };
+    console.log(data);
+};
 
-    </script>
+</script>
 </body>
 
 </html>
