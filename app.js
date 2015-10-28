@@ -3,7 +3,7 @@ var apiCall = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + s
 
 $('#search').click(function() {
     var searchInput = $('#searchInput').val(); //Gets value of input box
-    var searchArr = searchInput.split(" "); //Seperates individual words of input box into an array 
+    var searchArr = searchInput.split(" "); //Seperates individual words of input box into an array
 
     for (var i = 0; i < searchArr.length - 1; i++) {
         searchString += searchArr[i] + "+";
